@@ -1,0 +1,25 @@
+ext {
+    versionQuerydsl = '4.2.2'
+    versionReflections = '0.9.11'
+    versionMysemaCodegen = '0.6.8'
+    versionJavaxAnnotation="1.3.2"
+    versionHibernate = "1.0.2.Final"
+
+    generatedSourcesJavaFolder = "${buildDir}/q-entities/java"
+}
+
+dependencies {
+    annotationProcessor "com.querydsl:querydsl-apt:${versionQuerydsl}:jpa"
+    annotationProcessor "com.querydsl:querydsl-core:${versionQuerydsl}"
+    annotationProcessor "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${versionHibernate}"
+    annotationProcessor "javax.annotation:javax.annotation-api:${versionJavaxAnnotation}"
+    annotationProcessor "javax.inject:javax.inject:1"
+    annotationProcessor "com.mysema.codegen:codegen:${versionMysemaCodegen}"
+
+    implementation "com.querydsl:querydsl-jpa:${versionQuerydsl}"
+    implementation "com.querydsl:querydsl-core:${versionQuerydsl}"
+}
+
+compileJava {
+    options.annotationProcessorGeneratedSourcesDirectory = file("${generatedSourcesJavaFolder}")
+}
